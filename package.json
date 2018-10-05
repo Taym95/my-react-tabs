@@ -1,0 +1,9 @@
+{
+  "name": "my-react-tabs",
+  "version": "1.0.0",
+  "description": "react tab component",
+  "main": "index.js",
+  "repository": "https://github.com/Taym95/my-react-tabs.git",
+  "author": "Taym95 <haddadi.taym@gmail.com>",
+  "license": "MIT"
+}
