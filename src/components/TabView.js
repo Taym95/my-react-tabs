@@ -8,10 +8,12 @@ import TabViewContent from './TabViewContent';
 // helpers
 import { inheritParentProps, generateUniqueGuid } from '../helpers/helper'
 
+import '../style/tabview.css';
+
 class TabView extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
 
         this.tabViewGuid = generateUniqueGuid();
         this.state = {
@@ -43,7 +45,7 @@ class TabView extends Component {
               <TabViewContent {...this.props} currentTabIndex={this.state.currentTabIndex} />
           </React.Fragment>
         )
-    }
+    };
 
     render() {
 
