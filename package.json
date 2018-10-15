@@ -12,10 +12,13 @@
     "react-dom": "^16.5.2"
   },
   "scripts": {
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "build-storybook": "NODE_ENV=production build-storybook -c .storybook -o .out",
+    "deploy-storybook": "storybook-to-ghpages -c .storybook"
   },
   "devDependencies": {
     "@storybook/react": "^3.4.11",
+    "@storybook/storybook-deployer": "^2.3.0",
     "babel-core": "^6.26.3"
   }
 }
