@@ -47,3 +47,21 @@ export const generateUniqueGuid = () => {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 
 };
+export const addClassNameByPropValue = (classNameRef, props, propsKey, propsValue, classNameToAdd) => {
+
+    // only add when property exists and matches expected value and does not yet exist in reference
+    if (has(props, propsKey) && props[propsKey] === propsValue)
+        classNameRef = addClassName(classNameRef, classNameToAdd);
+
+    return classNameRef;
+
+};
+
+export const addClassName = (classNameRef, classNameToAdd) => {
+
+    if (indexOf(classNameRef, classNameToAdd) === -1)
+        classNameRef += ' ' + classNameToAdd;
+
+    return classNameRef;
+
+};

@@ -1,16 +1,30 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
 
-class TabViewContent extends Component {
+// helpers
+import { inheritParentProps } from '../helpers/helper'
+
+
+class TabViewContent extends React.Component {
+
+    renderChildren() {
+        return React.Children.map(this.props.children, (child, tabIndex) => {
+            return inheritParentProps(this, child, ['currentTabIndex', 'handleTabClick'], {
+                key: tabIndex,
+                tabIndex: tabIndex
+            });
+        })
+    }
+
     render() {
         return (
-          <div>
-
+          <div className="tabview-content">
+              {this.renderChildren()}
           </div>
-        );
+        )
+
     }
+
 }
 
-TabViewContent.propTypes = {};
 
 export default TabViewContent;

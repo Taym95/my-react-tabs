@@ -1,9 +1,4 @@
 import React, {Component} from 'react';
-import { isUndefined, has, isEmpty } from 'lodash'
-
-// components
-import TabViewNavigation from './TabViewNavigation';
-import TabViewContent from './TabViewContent';
 
 // helpers
 import { inheritParentProps, generateUniqueGuid } from '../helpers/helper'
@@ -17,7 +12,7 @@ class TabView extends Component {
 
         this.tabViewGuid = generateUniqueGuid();
         this.state = {
-            currentTabIndex: (isUndefined(props.currentTabIndex) ? 0 : props.currentTabIndex)
+            currentTabIndex: props.currentTabIndex ? 0 : props.currentTabIndex
         }
     }
 
@@ -38,26 +33,15 @@ class TabView extends Component {
         })
     }
 
-    renderChildrenFromDataSource = () => {
-        return (
-          <React.Fragment>
-              <TabViewNavigation {...this.props} currentTabIndex={this.state.currentTabIndex} handleTabClick={this.handleTabClick} />
-              <TabViewContent {...this.props} currentTabIndex={this.state.currentTabIndex} />
-          </React.Fragment>
-        )
-    };
-
     render() {
 
         let className = 'tabview';
-        if (has(this.props.className) && !isEmpty(this.props.className))
+        if (this.props.className && this.props.className)
             className += ' ' + this.props.className;
-
-        const output = (has(this.props, 'dataSource') && !isUndefined(this.props.dataSource) ? this.renderChildrenFromDataSource() : this.renderChildren());
 
         return (
           <div id={this.tabViewGuid} className={className}>
-              {output}
+              {this.renderChildren()}
           </div>
         )
     }

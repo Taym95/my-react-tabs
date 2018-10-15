@@ -1,7 +1,9 @@
 .tabview {
   width: auto;
 }
-
+ul {
+  list-style: none;
+}
 ul.tabview-nav {
   width: inherit;
   line-height: 40px;

@@ -1,16 +1,40 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
 
-class TabViewContentItem extends Component {
-    render() {
-        return (
-          <div>
+// helpers
+import { inheritParentProps, addClassNameByPropValue } from '../helpers/helper'
 
-          </div>
-        );
+class TabViewContentItem extends React.Component {
+
+    renderChildren() {
+        return React.Children.map(this.props.children, (child, tabIndex) => {
+            return inheritParentProps(this, child);
+        })
     }
+
+    render() {
+
+        let { showScroller } = this.props;
+        const output =  this.renderChildren();
+
+        let className = 'tabview-panel';
+
+        if (showScroller !== false)
+            className = className += ' scroller';
+
+        className = addClassNameByPropValue(className, this.props, 'tabIndex', this.props.currentTabIndex, 'panel-show');
+        className = addClassNameByPropValue(className, this.props, 'isHmiOptimized', true, 'hmi-optimized');
+
+
+
+        return (
+          <div className={className} data-hmi-scroll="1" style={{color: "red"}}>
+              {output}
+          </div>
+        )
+
+    }
+
 }
 
-TabViewContentItem.propTypes = {};
 
-export default TabViewContentItem;
+export default TabViewContentItem
